@@ -4,7 +4,7 @@
 ## Metadados
 
 - **Nomes dos alunos e RGM:**
-  - João Pedro Paulino Cassimiro (04810945-2)
+  - João Pedro Paulino Cassimiro (4810945-2)
   - Pedro Enrico Damasceno (48329487)
   - Vinicius Paes Landim (48178501)
   - Thais Oliveira (46578269)
