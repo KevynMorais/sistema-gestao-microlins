@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dicionário de Dados — Sistema Acadêmico Microlins</title>
+<title>Dicionário de Dados — Sistema Acadêmico Microlins (v1.2)</title>
 <style>
   :root {
     --bg: #ffffff;
@@ -17,7 +17,6 @@
     --note-border: #e8c366;
     --mono-bg: #f4f4f4;
     --entity-bg: #1a1a1a;
-    --rel-bg: #f5c344;
   }
   * { box-sizing: border-box; }
   body {
@@ -28,11 +27,7 @@
     background: var(--bg);
     line-height: 1.55;
   }
-  .wrap {
-    max-width: 880px;
-    margin: 0 auto;
-    padding: 2.5rem 1.5rem;
-  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 2.5rem 1.5rem; }
   .kicker {
     font-family: 'Courier New', monospace;
     font-size: 0.78rem;
@@ -41,24 +36,21 @@
     text-transform: uppercase;
     margin-bottom: 0.5rem;
   }
-  h1 {
-    font-size: 2rem;
-    margin: 0 0 0.3rem 0;
-    border-bottom: 3px solid var(--accent);
-    padding-bottom: 0.6rem;
-  }
-  .subtitle {
-    color: var(--muted);
-    font-size: 1.05rem;
-    margin-bottom: 0.8rem;
-  }
-  .meta {
+  h1 { font-size: 2rem; margin: 0 0 0.3rem 0; border-bottom: 3px solid var(--accent); padding-bottom: 0.6rem; }
+  .subtitle { color: var(--muted); font-size: 1.05rem; margin-bottom: 0.8rem; }
+  .meta { font-family: 'Courier New', monospace; font-size: 0.85rem; color: var(--muted); margin-bottom: 0.3rem; }
+  .meta b { color: var(--text); }
+  .version-badge {
+    display: inline-block;
+    background: #2a6b3f;
+    color: #fff;
     font-family: 'Courier New', monospace;
-    font-size: 0.85rem;
-    color: var(--muted);
+    font-size: 0.72rem;
+    font-weight: bold;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
     margin-bottom: 2rem;
   }
-  .meta b { color: var(--text); }
   h2 {
     font-size: 1.35rem;
     margin-top: 3rem;
@@ -77,163 +69,51 @@
     margin-right: 0.5rem;
     vertical-align: middle;
   }
-  h3 {
-    font-size: 1.05rem;
-    margin-top: 2rem;
-    margin-bottom: 0.6rem;
-    color: var(--text);
-    font-family: 'Courier New', monospace;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-  }
   p { margin: 0.7rem 0; }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 0.8rem 0 1.4rem 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-size: 0.92rem;
-  }
-  caption {
-    text-align: left;
-    font-weight: bold;
-    font-family: 'Courier New', monospace;
-    font-size: 0.85rem;
-    padding-bottom: 0.4rem;
-    color: var(--muted);
-  }
-  th, td {
-    border: 1px solid var(--line);
-    padding: 0.55rem 0.7rem;
-    text-align: left;
-    vertical-align: top;
-  }
-  th {
-    background: var(--table-head);
-    color: var(--table-head-text);
-    font-weight: 600;
-    font-size: 0.85rem;
-  }
+  table { width: 100%; border-collapse: collapse; margin: 0.8rem 0 1.4rem 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 0.92rem; }
+  caption { text-align: left; font-weight: bold; font-family: 'Courier New', monospace; font-size: 0.85rem; padding-bottom: 0.4rem; color: var(--muted); }
+  th, td { border: 1px solid var(--line); padding: 0.55rem 0.7rem; text-align: left; vertical-align: top; }
+  th { background: var(--table-head); color: var(--table-head-text); font-weight: 600; font-size: 0.85rem; }
   tr:nth-child(even) td { background: #fafafa; }
-  td code, .pk {
-    font-family: 'Courier New', monospace;
-    font-size: 0.85rem;
-    background: var(--mono-bg);
-    padding: 0.1rem 0.35rem;
-    border-radius: 3px;
-  }
+  td code { font-family: 'Courier New', monospace; font-size: 0.85rem; background: var(--mono-bg); padding: 0.1rem 0.35rem; border-radius: 3px; }
   .pk-badge {
-    display: inline-block;
-    background: #f5c344;
-    color: #4a3500;
-    font-family: 'Courier New', monospace;
-    font-size: 0.72rem;
-    font-weight: bold;
-    padding: 0.05rem 0.4rem;
-    border-radius: 3px;
-    margin-right: 0.3rem;
+    display: inline-block; background: #f5c344; color: #4a3500;
+    font-family: 'Courier New', monospace; font-size: 0.72rem; font-weight: bold;
+    padding: 0.05rem 0.4rem; border-radius: 3px;
   }
-  .conventions {
-    font-family: 'Courier New', monospace;
-    font-size: 0.85rem;
-    background: var(--mono-bg);
-    padding: 1rem 1.2rem;
-    border-radius: 6px;
-    line-height: 1.8;
-  }
+  .conventions { font-family: 'Courier New', monospace; font-size: 0.85rem; background: var(--mono-bg); padding: 1rem 1.2rem; border-radius: 6px; line-height: 1.8; }
   .conventions b { color: var(--text); }
   .note {
-    background: var(--note-bg);
-    border: 1px solid var(--note-border);
-    border-left: 4px solid var(--note-border);
-    padding: 1rem 1.2rem;
-    border-radius: 4px;
-    margin: 1.2rem 0;
-    font-size: 0.95rem;
+    background: var(--note-bg); border: 1px solid var(--note-border); border-left: 4px solid var(--note-border);
+    padding: 1rem 1.2rem; border-radius: 4px; margin: 1.2rem 0; font-size: 0.95rem;
   }
   .note b { display: block; margin-bottom: 0.3rem; }
-  .entity-block {
-    margin-top: 2.5rem;
-  }
+  .entity-block { margin-top: 2.5rem; }
   .entity-title {
-    display: inline-block;
-    background: var(--entity-bg);
-    color: #fff;
-    padding: 0.3rem 0.9rem;
-    border-radius: 4px;
-    font-family: 'Courier New', monospace;
-    font-size: 0.95rem;
-    letter-spacing: 0.03em;
-    margin-bottom: 0.5rem;
+    display: inline-block; background: var(--entity-bg); color: #fff; padding: 0.3rem 0.9rem;
+    border-radius: 4px; font-family: 'Courier New', monospace; font-size: 0.95rem; letter-spacing: 0.03em; margin-bottom: 0.5rem;
   }
-  .entity-desc {
-    color: var(--muted);
-    font-style: italic;
-    margin: 0.5rem 0 1rem 0;
-  }
-  /* Diagram */
-  .diagram-container {
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    padding: 1.5rem;
-    background: #fdfdfd;
-    overflow-x: auto;
-    margin: 1.2rem 0;
-  }
-  .diagram-caption {
-    text-align: center;
-    font-family: 'Courier New', monospace;
-    font-size: 0.8rem;
-    color: var(--muted);
-    margin-top: 0.6rem;
-  }
-  .entity-list {
-    margin-top: 1rem;
-    font-size: 0.95rem;
-  }
+  .entity-desc { color: var(--muted); font-style: italic; margin: 0.5rem 0 1rem 0; }
+  .diagram-container { border: 1px solid var(--line); border-radius: 8px; padding: 1.5rem; background: #fdfdfd; overflow-x: auto; margin: 1.2rem 0; }
+  .diagram-caption { text-align: center; font-family: 'Courier New', monospace; font-size: 0.8rem; color: var(--muted); margin-top: 0.6rem; }
+  .entity-list { margin-top: 1rem; font-size: 0.95rem; }
   svg text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
   .box-title { font-weight: bold; font-size: 11px; fill: #fff; }
   .box-attr { font-size: 9.5px; fill: #e8e8e8; }
   .rel-label { font-size: 9.5px; fill: #4a3500; font-weight: bold; }
   .card-label { font-size: 8.5px; fill: #333; }
-  footer {
-    margin-top: 4rem;
-    padding-top: 1.2rem;
-    border-top: 1px solid var(--line);
-    text-align: center;
-    font-family: 'Courier New', monospace;
-    font-size: 0.8rem;
-    color: var(--muted);
-  }
+  footer { margin-top: 4rem; padding-top: 1.2rem; border-top: 1px solid var(--line); text-align: center; font-family: 'Courier New', monospace; font-size: 0.8rem; color: var(--muted); }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg: #16181c;
-      --text: #e8e8e8;
-      --muted: #9a9a9a;
-      --accent: #e8e8e8;
-      --line: #333;
-      --table-head: #2a2d33;
-      --table-head-text: #fff;
-      --note-bg: #2b2411;
-      --note-border: #a8842e;
-      --mono-bg: #232529;
-      --entity-bg: #2a2d33;
+      --bg: #16181c; --text: #e8e8e8; --muted: #9a9a9a; --accent: #e8e8e8; --line: #333;
+      --table-head: #2a2d33; --table-head-text: #fff; --note-bg: #2b2411; --note-border: #a8842e; --mono-bg: #232529; --entity-bg: #2a2d33;
     }
     tr:nth-child(even) td { background: #1c1e22; }
     h1 { border-bottom-color: #e8e8e8; }
   }
   :root[data-theme="dark"] {
-    --bg: #16181c;
-    --text: #e8e8e8;
-    --muted: #9a9a9a;
-    --accent: #e8e8e8;
-    --line: #333;
-    --table-head: #2a2d33;
-    --table-head-text: #fff;
-    --note-bg: #2b2411;
-    --note-border: #a8842e;
-    --mono-bg: #232529;
-    --entity-bg: #2a2d33;
+    --bg: #16181c; --text: #e8e8e8; --muted: #9a9a9a; --accent: #e8e8e8; --line: #333;
+    --table-head: #2a2d33; --table-head-text: #fff; --note-bg: #2b2411; --note-border: #a8842e; --mono-bg: #232529; --entity-bg: #2a2d33;
   }
 </style>
 </head>
@@ -243,144 +123,129 @@
   <div class="kicker">Modelagem de Banco de Dados — Trabalho em Grupo</div>
   <h1>Dicionário de Dados</h1>
   <div class="subtitle">Sistema acadêmico da escola Microlins.</div>
-  <div class="meta"><b>Domínio:</b> processos escolares (matrícula, financeiro, professores, turmas) &nbsp;&nbsp;|&nbsp;&nbsp; <b>Versão:</b> 1.1</div>
+  <div class="meta"><b>Domínio:</b> processos escolares (matrícula, financeiro, professores, turmas)</div>
+  <div class="version-badge">VERSÃO 1.2</div>
 
   <h2><span class="num">1</span>Modelo conceitual</h2>
-  <p>O modelo conceitual abaixo (Diagrama Entidade-Relacionamento) representa os processos de uma escola — a Microlins — cobrindo o cadastro de alunos, o atendimento realizado pela secretaria, a supervisão de professores, a oferta de cursos organizados em turmas, o controle de horário de funcionamento e o registro financeiro das matrículas.</p>
+  <p>O modelo conceitual abaixo (Diagrama Entidade-Relacionamento) representa os processos de uma escola — a Microlins — cobrindo o cadastro de alunos, a geração de matrículas pela secretaria, a oferta de cursos lecionados por professores e organizados em turmas, o controle de horário de funcionamento e o registro financeiro das matrículas.</p>
 
   <div class="diagram-container">
-    <svg viewBox="0 0 980 620" width="100%" xmlns="http://www.w3.org/2000/svg">
-      <!-- Entities -->
+    <svg viewBox="0 0 980 600" width="100%" xmlns="http://www.w3.org/2000/svg">
+      <!-- PROFESSOR -->
+      <rect x="720" y="10" width="170" height="60" rx="4" fill="#1a1a1a"/>
+      <text x="805" y="28" text-anchor="middle" class="box-title">PROFESSOR</text>
+      <text x="732" y="44" class="box-attr">● id_professor (PK)</text>
+      <text x="732" y="57" class="box-attr">○ nome / especialidade</text>
+
       <!-- SECRETARIA -->
-      <rect x="380" y="10" width="160" height="70" rx="4" fill="#1a1a1a"/>
-      <text x="460" y="28" text-anchor="middle" class="box-title">SECRETARIA</text>
-      <text x="392" y="44" class="box-attr">● id_secretaria (PK)</text>
-      <text x="392" y="57" class="box-attr">○ nome_atendente</text>
-      <text x="392" y="70" class="box-attr">○ turno</text>
+      <rect x="345" y="130" width="160" height="70" rx="4" fill="#1a1a1a"/>
+      <text x="425" y="148" text-anchor="middle" class="box-title">SECRETARIA</text>
+      <text x="357" y="164" class="box-attr">● id_secretaria (PK)</text>
+      <text x="357" y="177" class="box-attr">○ nome_atendente</text>
+      <text x="357" y="190" class="box-attr">○ turno</text>
 
       <!-- ALUNO -->
-      <rect x="90" y="140" width="160" height="115" rx="4" fill="#1a1a1a"/>
-      <text x="170" y="158" text-anchor="middle" class="box-title">ALUNO</text>
-      <text x="102" y="174" class="box-attr">● id_aluno (PK)</text>
-      <text x="102" y="187" class="box-attr">○ nome</text>
-      <text x="102" y="200" class="box-attr">○ telefone</text>
-      <text x="102" y="213" class="box-attr">○ cep</text>
-      <text x="102" y="226" class="box-attr">○ logradouro</text>
-      <text x="102" y="239" class="box-attr">○ numero</text>
-      <text x="102" y="252" class="box-attr">○ bairro</text>
-
-      <!-- PROFESSOR -->
-      <rect x="720" y="140" width="170" height="60" rx="4" fill="#1a1a1a"/>
-      <text x="805" y="158" text-anchor="middle" class="box-title">PROFESSOR</text>
-      <text x="732" y="174" class="box-attr">● id_professor (PK)</text>
-      <text x="732" y="187" class="box-attr">○ nome</text>
-      <text x="732" y="197" class="box-attr" font-size="8.5">○ especialidade</text>
-
-      <!-- MATRICULA -->
-      <rect x="380" y="290" width="160" height="55" rx="4" fill="#1a1a1a"/>
-      <text x="460" y="308" text-anchor="middle" class="box-title">MATRÍCULA</text>
-      <text x="392" y="324" class="box-attr">● id_matricula (PK)</text>
-      <text x="392" y="337" class="box-attr">○ data_registro</text>
+      <rect x="60" y="200" width="160" height="115" rx="4" fill="#1a1a1a"/>
+      <text x="140" y="218" text-anchor="middle" class="box-title">ALUNO</text>
+      <text x="72" y="234" class="box-attr">● id_aluno (PK)</text>
+      <text x="72" y="247" class="box-attr">○ nome</text>
+      <text x="72" y="260" class="box-attr">○ telefone</text>
+      <text x="72" y="273" class="box-attr">○ cep</text>
+      <text x="72" y="286" class="box-attr">○ logradouro</text>
+      <text x="72" y="299" class="box-attr">○ numero</text>
+      <text x="72" y="312" class="box-attr">○ bairro</text>
 
       <!-- CURSO -->
-      <rect x="720" y="290" width="170" height="60" rx="4" fill="#1a1a1a"/>
-      <text x="805" y="308" text-anchor="middle" class="box-title">CURSO</text>
-      <text x="732" y="324" class="box-attr">● id_curso (PK)</text>
-      <text x="732" y="337" class="box-attr">○ nome_curso</text>
-      <text x="732" y="347" class="box-attr" font-size="8.5">○ carga_horaria</text>
+      <rect x="720" y="150" width="170" height="60" rx="4" fill="#1a1a1a"/>
+      <text x="805" y="168" text-anchor="middle" class="box-title">CURSO</text>
+      <text x="732" y="184" class="box-attr">● id_curso (PK)</text>
+      <text x="732" y="197" class="box-attr">○ nome_curso / carga_horaria</text>
 
       <!-- FINANCEIRO -->
-      <rect x="60" y="340" width="180" height="90" rx="4" fill="#1a1a1a"/>
-      <text x="150" y="358" text-anchor="middle" class="box-title">FINANCEIRO</text>
-      <text x="72" y="374" class="box-attr">● id_cobranca (PK)</text>
-      <text x="72" y="387" class="box-attr">○ valor</text>
-      <text x="72" y="400" class="box-attr" font-size="8.5">○ status_pagamento</text>
-      <text x="72" y="413" class="box-attr">○ data_vencimento</text>
+      <rect x="30" y="350" width="180" height="90" rx="4" fill="#1a1a1a"/>
+      <text x="120" y="368" text-anchor="middle" class="box-title">FINANCEIRO</text>
+      <text x="42" y="384" class="box-attr">● id_cobranca (PK)</text>
+      <text x="42" y="397" class="box-attr">○ valor</text>
+      <text x="42" y="410" class="box-attr" font-size="8.5">○ status_pagamento</text>
+      <text x="42" y="423" class="box-attr">○ data_vencimento</text>
+
+      <!-- MATRICULA -->
+      <rect x="345" y="360" width="160" height="55" rx="4" fill="#1a1a1a"/>
+      <text x="425" y="378" text-anchor="middle" class="box-title">MATRÍCULA</text>
+      <text x="357" y="394" class="box-attr">● id_matricula (PK)</text>
+      <text x="357" y="407" class="box-attr">○ data_registro</text>
 
       <!-- TURMA -->
-      <rect x="720" y="430" width="170" height="90" rx="4" fill="#1a1a1a"/>
-      <text x="805" y="448" text-anchor="middle" class="box-title">TURMA</text>
-      <text x="732" y="464" class="box-attr">● id_turma (PK)</text>
-      <text x="732" y="477" class="box-attr">○ sala</text>
-      <text x="732" y="490" class="box-attr">○ horario_inicio</text>
-      <text x="732" y="503" class="box-attr">○ horario_fim</text>
+      <rect x="720" y="300" width="170" height="90" rx="4" fill="#1a1a1a"/>
+      <text x="805" y="318" text-anchor="middle" class="box-title">TURMA</text>
+      <text x="732" y="334" class="box-attr">● id_turma (PK)</text>
+      <text x="732" y="347" class="box-attr">○ sala</text>
+      <text x="732" y="360" class="box-attr">○ horario_inicio</text>
+      <text x="732" y="373" class="box-attr">○ horario_fim</text>
 
       <!-- HORARIO_FUNCIONAMENTO -->
-      <rect x="690" y="560" width="230" height="55" rx="4" fill="#1a1a1a"/>
-      <text x="805" y="578" text-anchor="middle" class="box-title" font-size="10">HORÁRIO_FUNCIONAMENTO</text>
-      <text x="702" y="594" class="box-attr" font-size="8.5">● id_horario (PK)</text>
-      <text x="702" y="606" class="box-attr" font-size="8.5">○ dia_semana / hora_abertura / hora_fechamento</text>
+      <rect x="690" y="480" width="230" height="55" rx="4" fill="#1a1a1a"/>
+      <text x="805" y="498" text-anchor="middle" class="box-title" font-size="10">HORÁRIO_FUNCIONAMENTO</text>
+      <text x="702" y="514" class="box-attr" font-size="8.5">● id_horario (PK)</text>
+      <text x="702" y="526" class="box-attr" font-size="8.5">○ dia_semana / hora_abertura / hora_fechamento</text>
 
       <!-- Relationship diamonds -->
-      <polygon points="260,50 320,35 380,50 320,65" fill="#f5c344"/>
-      <text x="320" y="53" text-anchor="middle" class="rel-label">ATENDE</text>
+      <polygon points="765,90 805,75 845,90 805,105" fill="#f5c344"/>
+      <text x="805" y="93" text-anchor="middle" class="rel-label">LECIONA</text>
 
-      <polygon points="540,45 610,25 680,45 610,65" fill="#f5c344"/>
-      <text x="610" y="49" text-anchor="middle" class="rel-label">SUPERVISIONA</text>
+      <polygon points="375,235 425,215 475,235 425,255" fill="#f5c344"/>
+      <text x="425" y="238" text-anchor="middle" class="rel-label">GERA</text>
 
-      <polygon points="410,150 460,130 510,150 460,170" fill="#f5c344"/>
-      <text x="460" y="153" text-anchor="middle" class="rel-label">GERA</text>
+      <polygon points="700,235 760,215 820,235 760,255" fill="#f5c344"/>
+      <text x="760" y="238" text-anchor="middle" class="rel-label">CONTÉM</text>
 
-      <polygon points="700,225 760,205 820,225 760,245" fill="#f5c344"/>
-      <text x="760" y="228" text-anchor="middle" class="rel-label">LECIONA</text>
-
-      <polygon points="700,375 760,355 820,375 760,395" fill="#f5c344"/>
-      <text x="760" y="378" text-anchor="middle" class="rel-label">CONTÉM</text>
-
-      <polygon points="700,530 760,510 820,530 760,550" fill="#f5c344"/>
-      <text x="760" y="533" text-anchor="middle" class="rel-label">RESTRINGE</text>
+      <polygon points="700,440 760,420 820,440 760,460" fill="#f5c344"/>
+      <text x="760" y="443" text-anchor="middle" class="rel-label">RESTRINGE</text>
 
       <!-- INCLUI x3 -->
-      <polygon points="230,290 290,270 350,290 290,310" fill="#f5c344"/>
-      <text x="290" y="293" text-anchor="middle" class="rel-label">INCLUI (1)</text>
+      <polygon points="200,350 260,330 320,350 260,370" fill="#f5c344"/>
+      <text x="260" y="353" text-anchor="middle" class="rel-label">INCLUI (1)</text>
 
-      <polygon points="230,375 290,355 350,375 290,395" fill="#f5c344"/>
-      <text x="290" y="378" text-anchor="middle" class="rel-label">INCLUI (2)</text>
+      <polygon points="200,395 260,375 320,395 260,415" fill="#f5c344"/>
+      <text x="260" y="398" text-anchor="middle" class="rel-label">INCLUI (2)</text>
 
-      <polygon points="565,225 630,205 695,225 630,245" fill="#f5c344"/>
-      <text x="630" y="228" text-anchor="middle" class="rel-label">INCLUI (3)</text>
+      <polygon points="565,290 630,270 695,290 630,310" fill="#f5c344"/>
+      <text x="630" y="293" text-anchor="middle" class="rel-label">INCLUI (3)</text>
 
-      <!-- Connecting lines (simplified) -->
+      <!-- Connecting lines -->
       <g stroke="#999" stroke-width="1.2" fill="none">
-        <line x1="170" y1="140" x2="290" y2="65"/>
-        <line x1="380" y1="55" x2="320" y2="55"/>
-        <line x1="460" y1="80" x2="460" y2="130"/>
-        <line x1="540" y1="45" x2="610" y2="45"/>
-        <line x1="680" y1="45" x2="805" y2="140"/>
-        <line x1="460" y1="170" x2="460" y2="290"/>
-        <line x1="890" y1="170" x2="760" y2="205"/>
-        <line x1="805" y1="245" x2="805" y2="290"/>
-        <line x1="290" y1="310" x2="380" y2="315"/>
-        <line x1="170" y1="255" x2="230" y2="285"/>
-        <line x1="290" y1="395" x2="150" y2="430"/>
-        <line x1="290" y1="365" x2="230" y2="365"/>
-        <line x1="540" y1="315" x2="565" y2="225"/>
-        <line x1="695" y1="225" x2="720" y2="180"/>
-        <line x1="630" y1="245" x2="720" y2="320"/>
-        <line x1="630" y1="245" x2="760" y2="440"/>
-        <line x1="805" y1="350" x2="760" y2="355"/>
-        <line x1="805" y1="395" x2="805" y2="430"/>
-        <line x1="760" y1="550" x2="805" y2="560"/>
+        <line x1="805" y1="70" x2="805" y2="75"/>
+        <line x1="805" y1="105" x2="805" y2="150"/>
+        <line x1="140" y1="200" x2="200" y2="105"/>
+        <line x1="425" y1="200" x2="425" y2="215"/>
+        <line x1="475" y1="235" x2="345" y2="150"/>
+        <line x1="890" y1="180" x2="820" y2="235"/>
+        <line x1="805" y1="255" x2="805" y2="300"/>
+        <line x1="140" y1="315" x2="200" y2="345"/>
+        <line x1="200" y1="365" x2="140" y2="440"/>
+        <line x1="320" y1="355" x2="345" y2="380"/>
+        <line x1="320" y1="395" x2="345" y2="390"/>
+        <line x1="505" y1="390" x2="565" y2="290"/>
+        <line x1="695" y1="290" x2="720" y2="200"/>
+        <line x1="630" y1="310" x2="720" y2="335"/>
+        <line x1="630" y1="310" x2="760" y2="420"/>
+        <line x1="805" y1="390" x2="805" y2="480"/>
+        <line x1="760" y1="460" x2="805" y2="480"/>
       </g>
 
-      <!-- cardinalities -->
-      <text x="240" y="45" class="card-label">(0,N)</text>
-      <text x="392" y="45" class="card-label">(1,1)</text>
-      <text x="546" y="40" class="card-label">(1,1)</text>
-      <text x="692" y="40" class="card-label">(1,N)</text>
-      <text x="466" y="126" class="card-label">(1,1)</text>
-      <text x="466" y="286" class="card-label">(0,N)</text>
-      <text x="812" y="180" class="card-label">(1,1)</text>
-      <text x="812" y="220" class="card-label">(0,N)</text>
-      <text x="812" y="350" class="card-label">(1,1)</text>
-      <text x="812" y="391" class="card-label">(1,N)</text>
-      <text x="812" y="505" class="card-label">(1,N)</text>
-      <text x="812" y="555" class="card-label">(1,1)</text>
-      <text x="176" y="270" class="card-label">(1,N)</text>
-      <text x="355" y="295" class="card-label">(1,1)</text>
-      <text x="176" y="345" class="card-label">(1,1)</text>
-      <text x="355" y="380" class="card-label">(1,N)</text>
-      <text x="546" y="305" class="card-label">(1,N)</text>
+      <text x="770" y="70" class="card-label">(1,1)</text>
+      <text x="770" y="120" class="card-label">(0,N)</text>
+      <text x="432" y="212" class="card-label">(1,1)</text>
+      <text x="432" y="260" class="card-label">(0,N)</text>
+      <text x="825" y="180" class="card-label">(1,1)</text>
+      <text x="825" y="225" class="card-label">(0,N)</text>
+      <text x="825" y="415" class="card-label">(1,N)</text>
+      <text x="825" y="465" class="card-label">(1,1)</text>
+      <text x="146" y="330" class="card-label">(1,N)</text>
+      <text x="325" y="358" class="card-label">(1,1)</text>
+      <text x="146" y="378" class="card-label">(1,1)</text>
+      <text x="325" y="400" class="card-label">(1,N)</text>
+      <text x="510" y="375" class="card-label">(1,N)</text>
     </svg>
     <div class="diagram-caption">DER conceitual — sistema acadêmico Microlins</div>
   </div>
@@ -404,7 +269,7 @@
 
   <div class="entity-block">
     <div class="entity-title">ENTIDADE ALUNO</div>
-    <div class="entity-desc">Pessoa física atendida pela secretaria (ATENDE) e vinculada a uma matrícula (INCLUI).</div>
+    <div class="entity-desc">Pessoa física vinculada a uma matrícula (INCLUI).</div>
     <table>
       <caption>ALUNO — atributos</caption>
       <thead><tr><th>Chave</th><th>Atributo</th><th>Tipo físico</th><th>Descrição</th></tr></thead>
@@ -422,7 +287,7 @@
 
   <div class="entity-block">
     <div class="entity-title">ENTIDADE SECRETARIA</div>
-    <div class="entity-desc">Registro de atendimento da secretaria, responsável por atender alunos, supervisionar professores e gerar matrículas.</div>
+    <div class="entity-desc">Registro de atendimento da secretaria, responsável por gerar as matrículas (GERA).</div>
     <table>
       <caption>SECRETARIA — atributos</caption>
       <thead><tr><th>Chave</th><th>Atributo</th><th>Tipo físico</th><th>Descrição</th></tr></thead>
@@ -436,7 +301,7 @@
 
   <div class="entity-block">
     <div class="entity-title">ENTIDADE PROFESSOR</div>
-    <div class="entity-desc">Docente supervisionado pela secretaria (SUPERVISIONA) e responsável por lecionar um ou mais cursos (LECIONA).</div>
+    <div class="entity-desc">Docente responsável por lecionar um ou mais cursos (LECIONA).</div>
     <table>
       <caption>PROFESSOR — atributos</caption>
       <thead><tr><th>Chave</th><th>Atributo</th><th>Tipo físico</th><th>Descrição</th></tr></thead>
@@ -522,14 +387,12 @@
 
   <h2><span class="num">4</span>Dicionário de relacionamentos</h2>
   <p>Cardinalidades exatamente como definidas no DER conceitual, no formato (mínimo, máximo) ao lado de cada entidade participante.</p>
-  <p>Leitura: a cardinalidade ao lado de uma entidade indica, para cada ocorrência da entidade do outro lado do relacionamento, o número mínimo e máximo de ocorrências dessa entidade que participam dele. Ex.: em SECRETARIA (1,1) — ATENDE — (0,N) ALUNO, para cada aluno há exatamente 1 secretaria relacionada, e para cada secretaria há de 0 a N alunos relacionados.</p>
+  <p>Leitura: a cardinalidade ao lado de uma entidade indica, para cada ocorrência da entidade do outro lado do relacionamento, o número mínimo e máximo de ocorrências dessa entidade que participam dele. Ex.: em SECRETARIA (1,1) — GERA — (0,N) MATRÍCULA, para cada matrícula há exatamente 1 secretaria relacionada, e para cada secretaria há de 0 a N matrículas relacionadas.</p>
 
   <table>
     <caption>Relacionamentos do modelo</caption>
     <thead><tr><th>Relacionamento</th><th>Entidades envolvidas</th><th>Cardinalidade</th><th>Descrição</th></tr></thead>
     <tbody>
-      <tr><td><code>ATENDE</code></td><td>SECRETARIA ↔ ALUNO</td><td>SECRETARIA (1,1) — ALUNO (0,N)</td><td>A secretaria atende os alunos.</td></tr>
-      <tr><td><code>SUPERVISIONA</code></td><td>SECRETARIA ↔ PROFESSOR</td><td>SECRETARIA (1,1) — PROFESSOR (1,N)</td><td>A secretaria supervisiona os professores.</td></tr>
       <tr><td><code>GERA</code></td><td>SECRETARIA ↔ MATRÍCULA</td><td>SECRETARIA (1,1) — MATRÍCULA (0,N)</td><td>A secretaria gera as matrículas.</td></tr>
       <tr><td><code>LECIONA</code></td><td>PROFESSOR ↔ CURSO</td><td>PROFESSOR (1,1) — CURSO (0,N)</td><td>O professor leciona os cursos.</td></tr>
       <tr><td><code>CONTÉM</code></td><td>CURSO ↔ TURMA</td><td>CURSO (1,1) — TURMA (1,N)</td><td>O curso contém as turmas.</td></tr>
@@ -547,7 +410,7 @@
     Nos relacionamentos INCLUI (1) e INCLUI (2), a cardinalidade como desenhada indica que uma MATRÍCULA pode estar vinculada a mais de um ALUNO e que um registro FINANCEIRO pode estar vinculado a mais de uma MATRÍCULA — padrão pouco comum para um sistema escolar (o mais usual seria 1 aluno com N matrículas, e 1 matrícula com N cobranças). Vale confirmar com o grupo se essas cardinalidades no DER estão mesmo como pretendido.
   </div>
 
-  <footer>Dicionário de Dados — Sistema Acadêmico Microlins</footer>
+  <footer>Dicionário de Dados — Sistema Acadêmico Microlins (v1.2)</footer>
 
 </div>
 </body>
