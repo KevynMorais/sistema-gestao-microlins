@@ -7,7 +7,7 @@
 | João Pedro Paulino Cassimiro | 48109452 | https\://github.com/Joao-cyber037 |
 | Pedro Enrico Damasceno | 48329487 | https\://github.com/PedroDamasceno1312 |
 | Vinicius Paes Landim Dias | 48178501 | https\://github.com/viniciusdias10 |
-| Thais Oliveira | 46578269 |  |
+| Thais Oliveira | 46578269 | https\://github.com/thaisvinicarvalho-coder |
 | Kevyn Morais Barros | 48328936 | https\://github.com/KevynMorais |
 
 ## Índice
