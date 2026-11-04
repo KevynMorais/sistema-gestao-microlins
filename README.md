@@ -32,8 +32,8 @@
 - **Nome:** Microlins (escola de cursos profissionalizantes)  
 - **Endereço:** Rua Gregorio Ramalho, 267  
 - **Google Meu Negócio:** https\://share.google/Vl8QkhGN6fTIHxk5N  
-- **Responsável (nome):** ⚠️ PREENCHER  
-- **Responsável (telefone):** ⚠️ PREENCHER  
+- **Responsável (nome):** Jose Jeronimo Junior 
+- **Responsável (telefone):** +55 11 95934-0753
 - **Fotos do local:** `/evidencias/organizacao/` e linkar aqui, por exemplo `![Fachada](evidencias/organizacao/fachada.jpg)`
 
 ## 2\. Entrevista
@@ -42,9 +42,9 @@
 
 | Campo | Registro |
 | :---- | :---- |
-| Quem foi entrevistado (nome e cargo) | ⚠️ PREENCHER |
-| Quando (data e horário) | ⚠️ PREENCHER |
-| Onde | ⚠️ PREENCHER |
+| Quem foi entrevistado | Jose Jeronimo Junior | Coordenador Geral
+| Quando (data e horário) | 10/09/2026  13:30 |
+| Onde | Microlins Itaquera| Rua Gregorio Ramalho 267
 | Foto da entrevista/visita | ⚠️ PREENCHER (`/evidencias/entrevista/`) |
 
 ### 2.1 O que foi dito (relato do responsável)
@@ -65,7 +65,7 @@ Informações passadas pelo responsável (resumo; ⚠️ PREENCHER data e forma 
 
 ### 2.2 O que foi observado (pelo grupo, no local)
 
-⚠️ PREENCHER — o que vocês viram com os próprios olhos (salas, computadores, sistema em uso, papéis físicos, etc.).
+O membro João Pedro visitou a unidade e pode ver todas as salas de aula, teve acesso aos computadores da unidade (com excessão da sala da diretora), teve acesso ao endereço IP da rede e também pode ver o rack e servidor da unidade. O coordenador Jose Jeronimo Junior também permitiu que o entrevistador tivesse acesso ao sistema de controle que a organização usa (HUB).
 
 ## 3\. Números da organização
 
@@ -75,10 +75,10 @@ Fonte: **responsável da organização**.
 | :---- | :---- | :---- |
 | Salas | 4 (3 com 15 computadores; 1 com capacidade para 25, só ter/qui) | informado pelo responsável |
 | Duração dos cursos | cerca de 2 anos | informado pelo responsável |
-| Colaboradores no total | ⚠️ PREENCHER |  |
-| Por setor (secretaria, coordenação, financeiro, professores, limpeza, balcão) | ⚠️ PREENCHER |  |
-| Alunos | ⚠️ PREENCHER | informar se é por semana, por mês ou ativos totais |
-| Faturamento mensal | ⚠️ PREENCHER |  |
+| Colaboradores no total | 25 colaboradores no total |
+| Por setor  | 8 professores, 3 secretarias, 2 diretores, 1 coordenador geral, 2 balconistas, 7 no departamento financeiro e 2 no setor de limpeza |  |
+| Alunos | 477 alunos por mês | 
+| Faturamento mensal | a empresa pode lucrar de R$192.193,33 ate R$287.526,67 por mês (depende do contrato do aluno) |  |
 
 ## 4\. Problemas identificados
 
@@ -165,7 +165,7 @@ HAVING COUNT(*) > 3;
 
 | Processo | Por que ficou de fora |
 | :---- | :---- |
-| Compra de material didático/apostilas | ⚠️ PREENCHER (a escola compra? se sim, por que não foi modelado?) |
+| Compra de material didático/apostilas | Quando o contrato é gerado, parte do valor da mensalidade é voltado para compra das apostilas do aluno, a responsavel pelas apostilas é a empresa MovEDU |
 | Contas a pagar e fornecedores | ⚠️ PREENCHER |
 | Manutenção de laboratórios e computadores | ⚠️ PREENCHER |
 | Folha de pagamento, limpeza | ⚠️ PREENCHER |
