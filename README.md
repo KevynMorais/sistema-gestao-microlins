@@ -42,14 +42,16 @@
 
 | Campo | Registro |
 | :---- | :---- |
-| Quem foi entrevistado | Jose Jeronimo Junior | Coordenador Geral
-| Quando (data e horário) | 10/09/2026  13:30 |
-| Onde | Microlins Itaquera| Rua Gregorio Ramalho 267
-| Foto da entrevista/visita | ⚠️ PREENCHER (`/evidencias/entrevista/`) |
+| Quem foi entrevistado | José Jerônimo Júnior, coordenador geral |
+| Quando (data e horário) | 10/09/2026, às 13h30 |
+| Onde | Microlins Itaquera, Rua Gregório Ramalho, 267 |
+| Forma de contato |Primeira entrevista foi presencial, algumas duvidas foram perguntadas via Whastsapp |
+| Foto da entrevista/visita | ⚠️ PREENCHER (`evidencias/entrevista/`) |
+
 
 ### 2.1 O que foi dito (relato do responsável)
 
-Informações passadas pelo responsável (resumo; ⚠️ PREENCHER data e forma de contato):
+Informações passadas pelo responsável
 
 - Dia de vencimento, valor e número de parcelas dependem do contrato de cada matrícula e são definidos pelo responsável da escola.  
 - Cancelamento: multa de 20% sobre o valor restante do contrato, sem prazo de desistência após a assinatura.  
@@ -65,81 +67,63 @@ Informações passadas pelo responsável (resumo; ⚠️ PREENCHER data e forma 
 
 ### 2.2 O que foi observado (pelo grupo, no local)
 
-O membro João Pedro visitou a unidade e pode ver todas as salas de aula, teve acesso aos computadores da unidade (com excessão da sala da diretora), teve acesso ao endereço IP da rede e também pode ver o rack e servidor da unidade. O coordenador Jose Jeronimo Junior também permitiu que o entrevistador tivesse acesso ao sistema de controle que a organização usa (HUB).
+O integrante João Pedro visitou a unidade, viu todas as salas de aula e teve acesso aos computadores (com exceção da sala da diretora), ao endereço IP da rede, ao rack e ao servidor da unidade. O coordenador José Jerônimo Júnior também permitiu o acesso ao sistema de controle que a organização usa (HUB).
 
 ## 3\. Números da organização
 
-Fonte: **responsável da organização**.
+Fonte: **responsável da organização**
 
 | Indicador | Valor informado | Observação |
 | :---- | :---- | :---- |
 | Salas | 4 (3 com 15 computadores; 1 com capacidade para 25, só ter/qui) | informado pelo responsável |
 | Duração dos cursos | cerca de 2 anos | informado pelo responsável |
-| Colaboradores no total | 25 colaboradores no total |
-| Por setor  | 8 professores, 3 secretarias, 2 diretores, 1 coordenador geral, 2 balconistas, 7 no departamento financeiro e 2 no setor de limpeza |  |
-| Alunos | 477 alunos por mês | 
-| Faturamento mensal | a empresa pode lucrar de R$192.193,33 ate R$287.526,67 por mês (depende do contrato do aluno) |  |
+| Colaboradores | 25 no total | informado pelo responsável |
+| Colaboradores por setor | 8 professores, 3 secretárias, 2 diretores, 1 coordenador geral, 2 balconistas, 7 no financeiro e 2 na limpeza | informado pelo responsável |
+| Alunos | 477 por mês | informado pelo responsável |
+| Faturamento mensal | de R$ 192.193,33 a R$ 287.526,67 (depende do contrato do aluno) | informado pelo responsável |
 
 ## 4\. Problemas identificados
 
-Cada problema aponta a entidade do DER que o resolve e a consulta correspondente em [`script.sql`](http://script.sql).
+Cada problema aponta as entidades do DER que o resolvem e as consultas do [`script.sql`](docs/script.sql) que o demonstram. As consultas **G01 a G14** são gerenciais e as **A01 a A17** são de auditoria.
 
-| ID | Problema | Entidade(s) no DER | Consulta no script |
+| ID | Problema | Entidades no DER | Consultas no script |
 | :---- | :---- | :---- | :---- |
-| P1 | Alunos perdem o horário gravado no sistema | MATRÍCULA, MATRÍCULA\_TURMA, TURMA | `Q1` — matrículas ativas sem turma |
-| P2 | Perda frequente de matrículas | MATRÍCULA, ALUNO | `Q2` — matrículas por aluno e status |
-| P3 | Sem histórico consolidado de pagamentos | FINANCEIRO, MATRÍCULA | `Q3` — histórico de cobranças por aluno |
-| P4 | Sistema não justifica faltas, mesmo tendo a tela | FREQUÊNCIA, REPOSIÇÃO | `Q4` e `Q7` — faltas sem justificativa e módulos com mais de 3 faltas |
-| P5 | Sobreposição/lotação de salas e horários | TURMA, SALA, MATRÍCULA\_TURMA | `Q5` — salas acima da capacidade |
-| P6 | Endereços digitados de forma desorganizada | ALUNO | `Q6` — alunos com endereço incompleto |
+| P1 | Alunos perdem o horário gravado no sistema | MATRICULA, TURMA, TURMA_HORARIO | `A08` e `A16` (matrícula presa a uma turma com horário; matrícula ativa em turma encerrada) |
+| P2 | Perda frequente de matrículas | MATRICULA, ALUNO, FUNCIONARIO | `G07` (evasão por curso) e `G10` (matrículas por funcionário) |
+| P3 | Sem histórico consolidado de pagamentos | COBRANCA, PAGAMENTO, MATRICULA | `G01`, `G02`, `G05`, `G08`, `G09`, `G13` e `G14` |
+| P4 | Sistema não justifica faltas, mesmo tendo a tela | FREQUENCIA, AULA | `G04`, `G06` e `G12` (`fre_situacao = FALTA_JUSTIFICADA`, `fre_justificativa` e `fre_data_justificativa`) |
+| P5 | Sobreposição e lotação de salas e horários | TURMA, SALA, TURMA_HORARIO | `G03`, `G11`, `A03` e `A12` |
+| P6 | Endereços digitados de forma desorganizada | ALUNO | Prevenido por `NOT NULL` em `alu_cep`, `alu_logradouro`, `alu_numero` e `alu_bairro` (o banco não aceita endereço incompleto) |
+
+Exemplo (P3, consulta G14 do script — maiores devedores e contato para cobrança):
 
 ```sql
--- Q1 (P1): matrículas ativas sem turma atual
-SELECT m.id_matricula, a.nome
-FROM matricula m JOIN aluno a ON a.id_aluno = m.id_aluno
-WHERE m.status = 'ATIVA'
-  AND NOT EXISTS (SELECT 1 FROM matricula_turma mt
-                  WHERE mt.id_matricula = m.id_matricula AND mt.data_fim IS NULL);
-
--- Q2 (P2): situação das matrículas por aluno
-SELECT a.nome, m.id_matricula, m.status, m.data_registro
-FROM aluno a LEFT JOIN matricula m ON m.id_aluno = a.id_aluno
-ORDER BY a.nome, m.data_registro;
-
--- Q3 (P3): histórico de pagamentos de um aluno
-SELECT a.nome, f.tipo, f.data_vencimento, f.valor, f.status_pagamento
-FROM financeiro f
-JOIN matricula m ON m.id_matricula = f.id_matricula
-JOIN aluno a ON a.id_aluno = m.id_aluno
-WHERE a.id_aluno = 1
-ORDER BY f.data_vencimento;
-
--- Q4 (P4): faltas sem justificativa
-SELECT a.nome, fr.data_aula
-FROM frequencia fr
-JOIN matricula m ON m.id_matricula = fr.id_matricula
-JOIN aluno a ON a.id_aluno = m.id_aluno
-WHERE fr.presente = 0 AND fr.justificativa IS NULL;
-
--- Q5 (P5): salas acima da capacidade no mesmo dia/horário
-SELECT s.nome, t.dia_semana, t.horario_inicio, COUNT(*) AS alunos, s.capacidade
-FROM matricula_turma mt
-JOIN turma t ON t.id_turma = mt.id_turma
-JOIN sala s  ON s.id_sala = t.id_sala
-WHERE mt.data_fim IS NULL
-GROUP BY s.id_sala, s.nome, s.capacidade, t.dia_semana, t.horario_inicio
-HAVING COUNT(*) > s.capacidade;
-
--- Q6 (P6): endereços incompletos
-SELECT id_aluno, nome FROM aluno
-WHERE cep IS NULL OR logradouro IS NULL OR numero IS NULL OR bairro IS NULL;
-
--- Q7 (P4): alunos com mais de 3 faltas no mesmo módulo (repetem o módulo)
-SELECT fr.id_matricula, t.id_modulo, COUNT(*) AS faltas
-FROM frequencia fr JOIN turma t ON t.id_turma = fr.id_turma
-WHERE fr.presente = 0
-GROUP BY fr.id_matricula, t.id_modulo
-HAVING COUNT(*) > 3;
+-- G14 Quem são os 10 maiores devedores e qual o contato para cobrança (responsável, se menor)?
+-- Atende: P3 (sem histórico consolidado de pagamentos: maiores devedores)
+WITH devedores AS (
+    SELECT m.alu_id,
+           COUNT(*) AS cobrancas_em_atraso,
+           SUM(cb.cob_valor - IFNULL(p.principal_pago, 0)) AS saldo_devedor,
+           MIN(cb.cob_data_vencimento) AS vencimento_mais_antigo
+    FROM COBRANCA cb
+    JOIN MATRICULA m ON m.mat_id = cb.mat_id
+    LEFT JOIN (SELECT cob_id, SUM(pag_valor_pago - pag_multa - pag_juros) AS principal_pago
+               FROM PAGAMENTO GROUP BY cob_id) p ON p.cob_id = cb.cob_id
+    WHERE cb.cob_status IN ('ABERTA','VENCIDA')
+      AND cb.cob_data_vencimento < @data_ref
+    GROUP BY m.alu_id
+)
+SELECT a.alu_nome AS aluno,
+       IFNULL(r.res_nome, a.alu_nome) AS contato_para_cobranca,
+       IFNULL(r.res_telefone, a.alu_telefone) AS telefone_para_cobranca,
+       d.cobrancas_em_atraso,
+       d.saldo_devedor,
+       d.vencimento_mais_antigo
+FROM devedores d
+JOIN ALUNO a ON a.alu_id = d.alu_id
+LEFT JOIN RESPONSAVEL r ON r.res_id = a.res_id
+ORDER BY d.saldo_devedor DESC, a.alu_nome
+LIMIT 10;
 ```
 
 ## 5\. Processos de negócio
@@ -158,19 +142,20 @@ HAVING COUNT(*) > 3;
 | Reposição de aulas | Falta justificada: reposição grátis em qualquer dia e horário. Falta não justificada: reposição custa R\$ 40,00 (gera cobrança). Mais de 3 faltas no módulo: aluno repete o módulo | REPOSIÇÃO, FREQUÊNCIA, FINANCEIRO |
 | Trancamento | Matrícula é trancada por até 3 meses por ano de contrato. | TRANCAMENTO, MATRÍCULA |
 | Cancelamento | Matrícula é cancelada a qualquer momento; multa de 20% do valor restante do contrato; cobranças futuras canceladas; histórico mantido | MATRÍCULA, FINANCEIRO |
-| Conclusão e certificado | Aluno conclui os módulos do curso (cerca de 2 anos) → certificado emitido ⚠️ CONFIRMAR o requisito exato | MATRÍCULA, MÓDULO, FREQUÊNCIA |
+| Conclusão e certificado |  Atingida a frequência mínima do curso, a matrícula passa a `CONCLUIDA` e o certificado é emitido com código de autenticação e percentual apurado | MATRICULA, FREQUENCIA, CURSO, CERTIFICADO |
 | Atribuição de professores | Professor habilitado em curso é alocado em turmas; pode dar aula em até 2 turmas ao mesmo tempo | PROFESSOR, PROFESSOR\_CURSO, TURMA |
 
 ### 5.2 Processos fora do modelo e justificativa
 
 | Processo | Por que ficou de fora |
 | :---- | :---- |
-| Compra de material didático/apostilas | Quando o contrato é gerado, parte do valor da mensalidade é voltado para compra das apostilas do aluno, a responsavel pelas apostilas é a empresa MovEDU |
-| Contas a pagar e fornecedores | ⚠️ PREENCHER |
-| Manutenção de laboratórios e computadores | ⚠️ PREENCHER |
-| Folha de pagamento, limpeza | ⚠️ PREENCHER |
+| Compra de material didático/apostilas | O valor do material está embutido na mensalidade e as apostilas são fornecidas pela empresa MovEDU; a escola não controla estoque nem compra |
+| Cobrança de reposição (R$ 40,00), multa de cancelamento (20%) e bloqueio por atraso | O responsável informou as regras, mas o dicionário v1.5 não tem entidade para elas. A reposição existe como `AULA` do tipo `REPOSICAO`; o valor da multa e o bloqueio são calculados pela secretaria a partir de `COBRANCA` e `PAGAMENTO` (consultas G09 e G14). Ficam como evolução do modelo |
+| Contas a pagar e fornecedores (energia, água, internet, aluguel, MovEDU, manutenção de ar-condicionado e equipamentos) | Segundo o coordenador José Jerônimo Júnior, essas contas são de responsabilidade da matriz da Microlins, não da unidade Itaquera. A unidade não as controla, então não há dados nem processo a modelar no sistema da unidade |
+| Manutenção de laboratórios e computadores | Mesma situação: a manutenção é tratada pela matriz, fora do controle da unidade. Não tem relação com matrícula, turma, frequência ou cobrança |
+| Folha de pagamento e limpeza | Mesma situação: folha e contratação do pessoal de apoio são tratadas pela matriz. O modelo só guarda o professor e o funcionário que geram turmas e matrículas |
 
-> Perguntar ao responsável se esses processos existem. Se existem e ficaram de fora, a justificativa precisa ser real (escopo do trabalho), não "não deu tempo".
+> Confirmação do coordenador José Jerônimo Júnior, Confirmado em 04/11/2026, por WhatsApp evidência em `evidencias/entrevista/`.
 
 ## 6\. Requisitos e regras (RF, RNF, RN)
 
@@ -178,57 +163,79 @@ HAVING COUNT(*) > 3;
 
 | ID | Requisito | Implementação |
 | :---- | :---- | :---- |
-| RF01 | Cadastrar aluno (contato e endereço completo) e responsável | tabelas `aluno`, `responsavel` |
-| RF02 | Registrar matrícula com condições do contrato e vinculá-la a cobranças | `matricula`, `financeiro.id_matricula` |
-| RF03 | Alocar turmas respeitando capacidade da sala e blocos de 2h | `trg_turma_horario`, `trg_mt_capacidade` |
-| RF04 | Registrar frequência (pelo professor) e justificar faltas | tabela `frequencia` |
-| RF05 | Cancelar e trancar matrícula sem apagar histórico | `matricula.status`, `trancamento` |
-| RF06 | Agendar reposição de aulas e cobrar quando não justificada | tabela `reposicao` |
-| RF07 | Trocar o aluno de turma mantendo histórico | `matricula_turma` |
+| RF01 | Cadastrar aluno (contato e endereço completo) e responsável | `ALUNO`, `RESPONSAVEL` |
+| RF02 | Gerar matrícula do aluno em uma turma e vinculá-la a cobranças | `MATRICULA`, `COBRANCA.mat_id` |
+| RF03 | Alocar turmas em sala, professor e dias respeitando a capacidade e os blocos de 2h | `TURMA`, `TURMA_HORARIO`, `SALA`, consulta `A03` |
+| RF04 | Registrar frequência (pelo professor) e justificar faltas | `FREQUENCIA` |
+| RF05 | Cancelar, trancar e concluir matrícula sem apagar histórico | `MATRICULA.mat_status`, `mat_data_encerramento`, `mat_motivo_encerramento` |
+| RF06 | Programar reposição de aulas | `AULA.aul_tipo = 'REPOSICAO'` |
+| RF07 | Trocar o aluno de turma mantendo histórico | encerramento da matrícula anterior e nova `MATRICULA` |
+| RF08 | Registrar pagamentos totais ou parciais com multa e juros | `PAGAMENTO` |
+| RF09 | Emitir certificado ao atingir a frequência mínima | `CERTIFICADO`, `CURSO.cur_frequencia_minima` |
 
 ### 6.2 Requisitos não funcionais
 
 | ID | Requisito | Implementação |
 | :---- | :---- | :---- |
-| RNF01 | Integridade: dados financeiros imutáveis | `trg_financeiro_no_delete`, `trg_financeiro_no_update_pago` |
-| RNF02 | Confiabilidade: sala não ultrapassa capacidade; sem perda de turma na troca | `trg_mt_capacidade`, histórico em `matricula_turma` |
+| RNF01 | Integridade: chaves estrangeiras com `ON DELETE RESTRICT`, histórico preservado | `FOREIGN KEY` em todas as tabelas |
+| RNF02 | Consistência de domínio: status, tipos e horários com valores válidos | `CHECK ... IN (...)` para os domínios, `NOT NULL` e `DEFAULT` |
+| RNF03 | Acentuação correta | `utf8mb4` com collation `utf8mb4_0900_ai_ci` |
+| RNF04 | LGPD: finalidade restrita, consentimento e minimização | ver 6.4 |
 | RNF03 | LGPD: finalidade restrita e minimização | ver 6.4 |
 
 ### 6.3 Regras de negócio
 
-Valores e prazos abaixo foram informados pelo responsável da organização (ver 2.1).
+Valores e prazos foram informados pelo responsável da organização (ver 2.1). A coluna **Garantia** diz onde a regra é aplicada: no `CREATE TABLE`, em uma consulta de auditoria (`A##` do `script.sql`) ou na operação da escola.
 
-| ID | Regra | Por que importa | Código |
+| ID | Regra | Por que importa | Garantia |
 | :---- | :---- | :---- | :---- |
-| RN01 | Operação entre 08:00 e 18:00 | Escola só funciona nesse intervalo | `CHECK` em `turma` |
-| RN02 | Turma ocupa bloco de 2 horas | Padrão da grade | `CHECK` em `turma` |
-| RN03 | Turma extra só ter/qui entre 10:00 e 16:00 | A sala extra só abre nesses dias | `trg_turma_horario` |
-| RN04 | Existem 4 salas: 3 com capacidade 15 e 1 com 25 (só ter/qui). A capacidade vale por sala em cada dia e horário, somando todas as turmas ali | Cada aluno precisa de um computador | `sala.capacidade` \+ `trg_mt_capacidade` |
-| RN05 | Turma só existe com professor habilitado no curso do módulo | Impede aula sem docente qualificado | FK \+ `trg_turma_professor` |
-| RN06 | Professor pode dar aula em até 2 turmas ao mesmo tempo | Prática da escola | `trg_turma_prof_simultaneas` |
-| RN07 | Aluno pode estar em quantas turmas e cursos quiser. se as  turmas não forem no mesmo horário. | Define se existe restrição de conflito para o aluno | sem trigger; `matricula_turma` N:N |
-| RN08 | Idade mínima de 14 anos na data da matrícula | Política da escola | `trg_matricula_idade` |
-| RN09 | O contrato é sempre assinado por um responsável, mesmo que o aluno seja adulto | Responsável é o contato e o signatário | `matricula.id_responsavel NOT NULL` |
-| RN10 | Dia de vencimento, valor da parcela e quantidade de parcelas são definidos por matrícula | Contratos variam | colunas em `matricula` |
-| RN11 | Não se cria cobrança para matrícula cancelada (exceto a multa de cancelamento) | Evita cobrança órfã | `trg_financeiro_matricula` |
-| RN12 | Cobrança paga não pode ser alterada nem apagada | Histórico de pagamentos imutável | `trg_financeiro_no_*` |
-| RN13 | Mensalidade em atraso recebe acréscimo de 20% do valor. Em seguida há novo acréscimo de 20% sobre esse acréscimo. | Define o valor devido | `fn_encargos_atraso` (1ª etapa) |
-| RN14 | Com 1 mês de atraso a matrícula é bloqueada | Política de inadimplência | `sp_bloquear_inadimplentes` |
-| RN15 | Cancelamento: multa de 20% do valor restante do contrato (valor total − parcelas pagas). Não há prazo de desistência | Ex.: contrato de R\$ 8.000, pago R\$ 1.200 → 20% de R\$ 6.800 \= R\$ 1.360 | `fn_multa_cancelamento`, `trg_matricula_cancelamento` |
-| RN16 | Trancamento: até 3 meses por ano. | Política da escola | `trg_trancamento_limite` |
-| RN17 | Troca de turma é livre e gratuita, mantendo o histórico | Resolve P1 (alunos perdendo horário) | `matricula_turma` |
-| RN18 | Máximo de 3 faltas por módulo; acima disso o aluno repete o módulo. falta com justificada não conta no limite | Regra acadêmica | consulta `Q7` |
-| RN19 | Falta não justificada: reposição custa R\$ 40,00 | Receita e controle de faltas | `reposicao` \+ cobrança `REPOSICAO` |
-| RN20 | Falta justificada: reposição gratuita em qualquer dia e horário | Direito do aluno | `reposicao` sem cobrança |
-| RN21 | Quem registra a presença é o professor | Responsabilidade clara | `frequencia.id_professor` |
-| RN22 | Dados pessoais só são usados para contrato, contato com responsável e acionamento de emergência | LGPD: finalidade | ver 6.4 |
+| RN01 | Operação entre 08:00 e 18:00 | A escola só funciona nesse intervalo | `CHECK` em `TURMA` e `A10` |
+| RN02 | Turma ocupa bloco de 2 horas | Padrão da grade | `CHECK ck_turma_bloco_2h` em `TURMA` |
+| RN03 | Turma extra só ocorre às terças e quintas, entre 10:00 e 16:00 | A sala extra só abre nesses dias | `A14` |
+| RN04 | Existem 4 salas: 3 com 15 lugares e 1 com 25 (só ter/qui). A capacidade vale por sala em cada dia e horário, somando todas as turmas ali | Cada aluno precisa de um computador | `A03` e `G03` |
+| RN05 | Turma só existe com professor habilitado no curso | Impede aula sem docente qualificado | `PROFESSOR_CURSO` e `A02` |
+| RN06 | Professor pode dar aula em até 2 turmas ao mesmo tempo | Prática da escola | `A12` |
+| RN07 | Aluno pode estar em quantas turmas e cursos quiser (uma matrícula por turma) | Flexibilidade informada pelo responsável | `MATRICULA` (N matrículas por aluno) |
+| RN08 | Idade mínima de 14 anos na data da matrícula | Política da escola | `A13` |
+| RN09 | O contrato é assinado por um responsável | O responsável é o contato e o signatário | `A01` |
+| RN10 | Valor da mensalidade, número de parcelas e frequência mínima são definidos pelo curso | Simplificação do modelo (o responsável disse que variam por contrato; ver 9.5) | `CURSO` |
+| RN11 | Cancelamento, trancamento e conclusão mudam o status com data e motivo, sem apagar histórico | Preserva o histórico | `MATRICULA.mat_status` |
+| RN12 | Cancelamento: multa de 20% do valor restante do contrato, sem prazo de desistência | Política da escola | Operação da secretaria (fora do modelo; ver 5.2) |
+| RN13 | Atraso: multa de 20% da parcela (`pag_multa`) e novo acréscimo de 20% sobre essa multa (`pag_juros`) | Define o valor devido | `PAGAMENTO` e `G13` |
+| RN14 | Com 1 mês de atraso o aluno é bloqueado | Política de inadimplência | Operação, apoiada por `G09` e `G14` |
+| RN15 | Trancamento de até 3 meses por ano | Política da escola | Operação da secretaria (informativa) |
+| RN16 | Falta justificada conta como presença no cálculo da frequência | Direito do aluno | `G04`, `G12` e inserção em lote (4.3 do script) |
+| RN17 | Cobrança aberta após o vencimento passa a `VENCIDA` | Controle de inadimplência | `UPDATE` 4.1 do script |
+| RN18 | Máximo de 3 faltas por módulo; no modelo, o critério é o percentual mínimo de frequência do curso | Regra acadêmica (o módulo não é entidade) | `CURSO.cur_frequencia_minima` e `G04` |
+| RN19 | Falta não justificada: reposição custa R$ 40,00 | Receita e controle de faltas | Operação da escola (fora do modelo; ver 5.2) |
+| RN20 | Falta justificada: reposição gratuita em qualquer dia e horário | Direito do aluno | `AULA.aul_tipo = 'REPOSICAO'` |
+| RN21 | Quem registra a presença é o professor da turma | Responsabilidade clara | `TURMA.pro_id` |
+| RN22 | Dados pessoais só com finalidade restrita e consentimento registrado | LGPD | `A04` |
+| RN23 | Certificado exige a frequência mínima do curso | Validade da conclusão | `A05`, `A06` e `A07` |
+| RN24 | Cobrança `PAGA` tem o principal quitado, sem pagamento a maior | Integridade financeira | `A11` |
+| RN25 | A frequência pertence à matrícula da mesma turma da aula | Consistência acadêmica | `A08` |
+| RN26 | Aula regular ocorre somente nos dias da turma | Grade respeitada | `A09` |
+| RN27 | Só se oferta turma com curso ativo e professor ativo | Catálogo vigente | `A15` |
+| RN28 | Turma encerrada ou cancelada não mantém matrícula ativa | Evita matrícula "fantasma" | `A16` |
+| RN29 | Matrícula ativa gera cobranças | Sem receita esquecida | `A17` |
 
 **Pontos de atenção (para o grupo discutir, não para esconder):**
 
-- **RN13:** o Código de Defesa do Consumidor (art. 52, §1º) limita a multa por atraso a 2% e decisões judiciais aplicam esse limite a mensalidades escolares. A escola informou 20%. O trabalho registra a regra **como a escola pratica**, mas o grupo deve deixar claro que ela pode ser contestada e que o valor deve ser parametrizável (`parametro.percentual_multa`). Esta não é opinião jurídica.  
-- **RN15:** a multa de 20% sobre o saldo restante e a ausência de prazo de desistência também podem ser questionadas em contratos de consumo. Mesmo tratamento: registrar a prática e parametrizar.
+- **RN13:** o Código de Defesa do Consumidor (art. 52, §1º) limita a multa por atraso a 2%, e decisões judiciais aplicam esse limite a mensalidades escolares. A escola informou 20%. O trabalho registra a regra **como a escola pratica**, mas deixa claro que ela pode ser contestada. Esta não é opinião jurídica.
+- **RN12:** a multa de 20% sobre o saldo restante e a ausência de prazo de desistência também podem ser questionadas em contratos de consumo. Mesmo tratamento: registrar a prática.
 
-### 6.4 Código das regras
+### 6.4 LGPD
+
+| Medida | Aplicação |
+| :---- | :---- |
+| Finalidade | Dados do aluno são usados só para o contrato, contato com o responsável e acionamento de emergência (informado pela escola) |
+| Minimização | Coletar apenas CPF, nome, nascimento, telefone, e-mail (opcional) e endereço do aluno; CPF, nome, telefone e parentesco do responsável |
+| Menores de idade | Alunos a partir de 14 anos; o responsável assina o contrato e é o contato (`RESPONSAVEL`, ligado por `ALUNO.res_id`) |
+| Consentimento | `alu_consentimento_lgpd` e `alu_data_consentimento`, verificados pela consulta `A04` ⚠️ CONFIRMAR se o contrato atual tem cláusula de dados |
+| Acesso restrito | Papéis por entidade e operação definidos no dicionário de dados (seção 6): atendimento, professor, financeiro, coordenação e auditoria |
+| Rastreabilidade | Log de acesso do SGBD e versionamento do dicionário (art. 6º, X) |
+
+### 6.5 Código das regras
 
 ```sql
 -- RN01 e RN02
@@ -366,21 +373,11 @@ END//
 DELIMITER ;
 ```
 
-### 6.5 LGPD
+## 7. Ferramentas utilizadas    
 
-| Medida | Aplicação |
-| :---- | :---- |
-| Finalidade | Dados do aluno são usados só para o contrato, contato com o responsável e acionamento de emergência (informado pela escola) |
-| Minimização | Coletar apenas nome, nascimento, telefone e endereço do aluno; nome, telefone e documento do responsável |
-| Menores de idade | Alunos a partir de 14 anos; o responsável assina o contrato e é o contato (entidade `responsavel`) |
-| Consentimento | Campo `consentimento_lgpd` e `data_consentimento` registrados na assinatura do contrato ⚠️ CONFIRMAR se o contrato atual tem cláusula de dados |
-| Acesso restrito | Perfis de banco: secretaria (aluno, responsável, matrícula), financeiro (financeiro), professor (frequência) |
-| Eliminação/anonimização | Procedimento que anonimiza nome/telefone/endereço do aluno após o fim do contrato, mantendo o financeiro por obrigação fiscal |
-
-## 7\. Ferramentas utilizadas
-
-- **DER (modelo conceitual e lógico):** BRModelo  
-- **Script SQL / SGBD:**  (os exemplos estão em sintaxe MySQL e **não foram executados**; testar antes de entregar)  
+- **DER e modelo lógico:** brModelo (arquivo `modelo/microlins.brM3`)
+- **Banco de dados:** MySQL 8.0.16
+- **Dicionário de dados:** arquivo HTML único (`docs/dicionario-dados-microlins.html`)
 - **Versionamento:** Git / GitHub
 
 ## 8\. Modelo conceitual (DER)
