@@ -156,6 +156,7 @@ LIMIT 10;
 | Folha de pagamento e limpeza | Mesma situação: folha e contratação do pessoal de apoio são tratadas pela matriz. O modelo só guarda o professor e o funcionário que geram turmas e matrículas |
 
 > Confirmação do coordenador José Jerônimo Júnior, Confirmado em 04/11/2026, por WhatsApp evidência em `evidencias/entrevista/`.
+> Cobrança e reposição foram confirmadas presencialmente durante a entrevista
 
 ## 6\. Requisitos e regras (RF, RNF, RN)
 
@@ -360,7 +361,7 @@ BEGIN
   END IF;
 END//
 
--- RN16: trancamento de até 3 meses por ano (⚠️ ano civil; confirmar)
+-- RN16: trancamento de até 3 meses por ano civil
 CREATE TRIGGER trg_trancamento_limite BEFORE INSERT ON trancamento FOR EACH ROW
 BEGIN
   IF (SELECT COALESCE(SUM(TIMESTAMPDIFF(MONTH, data_inicio, data_fim)), 0) FROM trancamento
@@ -382,9 +383,7 @@ DELIMITER ;
 
 ## 8\. Modelo conceitual (DER)
 
-\!\[DER\](⚠️ PREENCHER caminho da imagem, por exemplo evidencias/der\_conceitual.png)
-
-> **Atenção:** o DER precisa refletir as correções da seção 9.5: RESPONSÁVEL, MÓDULO, MATRÍCULA\_TURMA, TRANCAMENTO, REPOSIÇÃO, SALA, FREQUÊNCIA, PROFESSOR\_CURSO, 1 matrícula \= 1 aluno, 1 matrícula \= N cobranças.
+sistema-gestao-microlins/DER_microlins.png
 
 ## 9\. Seções técnicas
 
@@ -584,8 +583,8 @@ Um item para cada um dos 12 critérios da avaliação da Issue \#1. "FEITO" \= j
 
 | Arquivo | Link |
 | :---- | :---- |
-| DER (imagem) | ⚠️ `evidencias/der_conceitual.png` |
-| Arquivo do brModelo | ⚠️ `modelo/microlins.brM3` |
+| DER (imagem) | 'sistema-gestao-microlins/DER_microlins.png' |
+| Arquivo do brModelo | ⚠️ `sistema-gestao-microli0ns/Modelo_logico_microlins.png` |
 | Script SQL | [`script.sql`](http://script.sql) |
 | Dicionário de dados | ⚠️ link para o arquivo separado (o dicionário saiu do README) |
 | Evidências (fotos, entrevista) | ⚠️ `evidencias/` |
