@@ -383,7 +383,7 @@ DELIMITER ;
 
 ## 8\. Modelo conceitual (DER)
 
-![Diagrama de Entidade-Relacionamento](sistema-gestao-microlins/DER_microlins.png)
+[Diagrama de Entidade-Relacionamento](DER_microlins.png)
 
 ## 9\. Seções técnicas
 
@@ -583,8 +583,8 @@ Um item para cada um dos 12 critérios da avaliação da Issue \#1. "FEITO" \= j
 
 | Arquivo | Link |
 | :---- | :---- |
-| DER (imagem) |(sistema-gestao-microlins/DER_microlins.png)|
-| Arquivo do brModelo | (sistema-gestao-microlins/Modelo_logico_microlins.png) |
+| DER (imagem) |[Diagrama Entidade-relacionamento](DER_microlins.png)|
+| Arquivo do brModelo | [Modelo Logico](sistema-gestao-microlins/Modelo_logico_microlins.png) |
 | Script SQL | [`script.sql`](http://script.sql) |
 | Dicionário de dados | ⚠️ link para o arquivo separado (o dicionário saiu do README) |
 | Evidências (fotos, entrevista) | ⚠️ `evidencias/` |
