@@ -459,7 +459,7 @@ Um item para cada um dos 12 critérios da avaliação da Issue #1. "FEITO" = já
 | Modelo lógico (imagem) | [`Modelo_logico_microlins.png`](Modelo_logico_microlins.png) |
 | Dicionário de dados (v1.5) | [`dicionario-dados-microlins.html`](dicionario-dados-microlins.html) |
 | Script SQL (inclui a massa de dados) | [`docs/script.sql`](docs/script.sql) |
-| Levantamento | [`levantamento/levantamento.md`](levantamento/levantamento.md) |
+| Levantamento | [`levantamento/levantamento.md`](levantamento/levantamento_1.md) |
 | Evidências da entrevista e da organização | [`levantamento/`](levantamento/) e [`evidencias/`](evidencias/) |
 | Apresentação | [`apresentacao/`](apresentacao/) |
 
