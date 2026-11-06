@@ -71,7 +71,7 @@ O integrante João Pedro visitou a unidade, viu todas as salas de aula e teve ac
 
 ### 2.3 Levantamento
 
-O levantamento completo, organizado por tema (estrutura da unidade, matrícula, cobrança e atraso, frequência, material, processos fora do modelo e regras), está em [`levantamento/levantamento.md`](levantamento/levantamento_1.md). Resumo:
+O levantamento completo, organizado por tema (estrutura da unidade, matrícula, cobrança e atraso, frequência, material, processos fora do modelo e regras), está em [`levantamento/levantamento_1.md`](levantamento/levantamento_1.md). Resumo:
 
 - **Fontes:** entrevista presencial de 10/09/2026, observação do local e confirmações por WhatsApp em 04/11/2026.
 - **Achado principal:** a unidade controla o ciclo acadêmico e a receita do aluno; contas, manutenção, limpeza e folha de pagamento são da matriz.
