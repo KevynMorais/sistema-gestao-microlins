@@ -146,12 +146,12 @@ LIMIT 10;
 | PR3 | Ao fechar o contrato, a secretaria envia o contrato do aluno à MovEDU → o professor pede a apostila conforme o aluno avança nos módulos (o valor está embutido na mensalidade) | MATRICULA, TURMA (a MovEDU não é entidade do modelo) |
 | PR4 | Aluno com no mínimo 14 anos → funcionário gera a matrícula em uma turma aberta, respeitando a capacidade da sala → contrato assinado pelo responsável → matrícula `ATIVA` | MATRICULA, FUNCIONARIO, TURMA, ALUNO |
 | PR5 | A matrícula gera a taxa e as parcelas de mensalidade conforme o curso (valor e número de parcelas) | COBRANCA, CURSO |
-| Recebimento, atraso e baixa | Cada pagamento baixa uma cobrança (parcial ou total) → em atraso, incidem multa de 20% e juros de 20% sobre a multa → a cobrança vencida fica `VENCIDA` | PAGAMENTO, COBRANCA |
-| PR6 | A turma programa as aulas (regulares ou de reposição) → o professor registra presença ou falta de cada matrícula → a falta pode receber justificativa | AULA, FREQUENCIA |
-| PR7 | Aluno pede troca → a matrícula atual é encerrada com data e motivo e uma nova é gerada na outra turma, sem custo, mantendo o histórico | MATRICULA |
-| PR8 | A matrícula muda de status (`CANCELADA` ou `TRANCADA`) com data e motivo de encerramento; nada é apagado | MATRICULA, COBRANCA |
-| PR9 | Atingida a frequência mínima do curso, a matrícula passa a `CONCLUIDA` e o certificado é emitido com código de autenticação e percentual apurado | MATRICULA, FREQUENCIA, CURSO, CERTIFICADO |
-| PR10 | Professor habilitado no curso é alocado às turmas; pode lecionar até 2 turmas ao mesmo tempo | PROFESSOR, PROFESSOR_CURSO, TURMA |
+| PR6 | Cada pagamento baixa uma cobrança (parcial ou total) → em atraso, incidem multa de 20% e juros de 20% sobre a multa → a cobrança vencida fica `VENCIDA` | PAGAMENTO, COBRANCA |
+| PR7 | A turma programa as aulas (regulares ou de reposição) → o professor registra presença ou falta de cada matrícula → a falta pode receber justificativa | AULA, FREQUENCIA |
+| PR8 | Aluno pede troca → a matrícula atual é encerrada com data e motivo e uma nova é gerada na outra turma, sem custo, mantendo o histórico | MATRICULA |
+| PR9 | A matrícula muda de status (`CANCELADA` ou `TRANCADA`) com data e motivo de encerramento; nada é apagado | MATRICULA, COBRANCA |
+| PR10 | Atingida a frequência mínima do curso, a matrícula passa a `CONCLUIDA` e o certificado é emitido com código de autenticação e percentual apurado | MATRICULA, FREQUENCIA, CURSO, CERTIFICADO |
+| PR11 | Professor habilitado no curso é alocado às turmas; pode lecionar até 2 turmas ao mesmo tempo | PROFESSOR, PROFESSOR_CURSO, TURMA |
 
 ### 5.2 Processos fora do modelo e justificativa
 
